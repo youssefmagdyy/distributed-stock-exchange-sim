@@ -11,7 +11,7 @@ A **distributed stock exchange simulator** built with **Node.js**, **Docker**, *
 
 ---
 
-## 🚀 Overview
+## 🌟 Overview
 
 This project simulates a full stock exchange workflow using a **microservices architecture**.  
 Each service runs in a Docker container and is deployed in a **Kubernetes cluster** with **auto-scaling (HPA)** and **fault tolerance** via liveness/readiness probes.
@@ -20,7 +20,7 @@ Each service runs in a Docker container and is deployed in a **Kubernetes cluste
 
 ---
 
-## ⚙️ Tech Highlights
+## ⚙️ Tech Stack
 - **Node.js** for backend microservices  
 - **Kubernetes + Docker** for orchestration and scaling  
 - **RabbitMQ** for asynchronous communication between services  
