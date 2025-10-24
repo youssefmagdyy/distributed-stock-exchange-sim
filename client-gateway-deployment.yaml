@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-gateway
+  template:
+    metadata:
+      labels:
+        app: client-gateway
+    spec:
+      containers:
+      - name: client-gateway
+        image: client-gateway:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+
+ 
+
+
+              

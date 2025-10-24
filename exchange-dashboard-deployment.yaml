@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exchange-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exchange-dashboard
+  template:
+    metadata:
+      labels:
+        app: exchange-dashboard
+    spec:
+      containers:
+        - name: exchange-dashboard
+          image: exchange-dashboard-frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"      
+              memory: "128Mi"  
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5

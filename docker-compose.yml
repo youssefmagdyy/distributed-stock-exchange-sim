@@ -1,0 +1,51 @@
+services:
+  client-gateway:
+    build:
+      context: ./client_order_streamer
+    image: client-gateway:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - order-manager
+
+  order-manager:
+    build:
+      context: ./order-manager
+    image: order-manager:latest
+    ports:
+      - "3001:3001"
+    depends_on:
+      - matching-engine
+      - market-data-publisher
+
+  matching-engine:
+    build:
+      context: ./matching-engine
+    image: matching-engine:latest
+    ports:
+      - "3002:3002"
+
+  market-data-publisher:
+    build:
+      context: ./market-data-publisher
+    image: market-data-publisher:latest
+    ports:
+      - "3003:3003"
+
+  exchange-dashboard-backend:
+    build:
+      context: ./exchange-dashboard/backend
+    image: exchange-dashboard-backend:latest
+    ports:
+      - "3004:3004"
+    depends_on:
+      - market-data-publisher
+
+  exchange-dashboard-frontend:
+    build:
+      context: ./exchange-dashboard/frontend
+    image: exchange-dashboard-frontend:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - exchange-dashboard-backend

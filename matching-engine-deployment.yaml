@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matching-engine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: matching-engine
+  template:
+    metadata:
+      labels:
+        app: matching-engine
+    spec:
+      containers:
+      - name: matching-engine
+        image: matching-engine:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3002
+        resources:
+          requests:
+            cpu: "100m"      
+            memory: "128Mi"   
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3002
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3002
+          initialDelaySeconds: 3
+          periodSeconds: 5
