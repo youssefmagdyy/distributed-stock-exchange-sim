@@ -2,7 +2,7 @@
 
 # Start Minikube if not already started
 echo "Starting Minikube..."
-# minikube start
+minikube start
 
 # Install Metrics Server and RabbitMQ
 echo "Installing Metrics Server and RabbitMQ..."
@@ -14,11 +14,11 @@ echo "Building Docker images..."
 # eval $(minikube -p minikube docker-env)
 
 # Build each service's Docker image
-docker build -t market-data-publisher:latest ./market-data-publisher
-docker build -t order-manager:latest ./order-manager
-docker build -t client-gateway:latest ./client_order_streamer
-docker build -t matching-engine:latest ./matching-engine
-docker build -t exchange-dashboard-frontend:latest ./exchange-dashboard/frontend
+docker build -t market-data-publisher:latest ./k8s/market-data-publisher
+docker build -t order-manager:latest ./k8s/order-manager
+docker build -t client-gateway:latest ./k8s/client_order_streamer
+docker build -t matching-engine:latest ./k8s/matching-engine
+docker build -t exchange-dashboard-frontend:latest ./k8s/exchange-dashboard/frontend
 
 echo "Docker images built successfully."
 
@@ -100,13 +100,15 @@ kubectl port-forward svc/exchange-dashboard 80:80 &
 kubectl port-forward svc/rabbitmq 15672:15672 &
 kubectl port-forward svc/market-data-publisher 3003:3003 &
 
-# Deploy Client Gateway
-# sleep 15
-# echo "Deploying Client Gateway..."
-# kubectl apply -f client-gateway-deployment.yaml
-# kubectl apply -f client-gateway-service.yaml
-# echo "Client Gateway deployed."
+Deploy Client Gateway
+echo "Client Gateway will deploy in 30 seconds."
+sleep 30
+echo "Deploying Client Gateway..."
+kubectl apply -f client-gateway-deployment.yaml
+kubectl apply -f client-gateway-service.yaml
+echo "Client Gateway deployed."
 
 echo "All services have been successfully deployed!"
+echo "Script should keep running for port forwarding to work"
 sleep 60000
 ## Script should keep running for port forwarding to work
