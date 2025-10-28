@@ -1,17 +1,17 @@
-# 🧩 Stock Exchange Simulation Platform
+# Stock Exchange Simulation Platform
 
 A **distributed stock exchange simulator** built with **Node.js**, **Docker**, **Kubernetes**, **RabbitMQ**, and **Redis**, featuring **real-time market data** visualized through a **React dashboard**.
 
 ---
 
-## 🖥️ Preview
+## Preview
 
 ![Exchange Dashboard Screenshot](./docs/dashboardbook.png)
 *Real-time order book and price evolution charts.*
 
 ---
 
-## 🌟 Overview
+## Overview
 
 This project simulates a full stock exchange workflow using a **microservices architecture**.  
 Each service runs in a Docker container and is deployed in a **Kubernetes cluster** with **auto-scaling (HPA)** and **fault tolerance** via liveness/readiness probes.
@@ -20,7 +20,7 @@ Each service runs in a Docker container and is deployed in a **Kubernetes cluste
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 - **Node.js** for backend microservices  
 - **Kubernetes + Docker** for orchestration and scaling  
 - **RabbitMQ** for asynchronous communication between services  
@@ -30,7 +30,7 @@ Each service runs in a Docker container and is deployed in a **Kubernetes cluste
 
 ---
 
-## 🧱 Architecture
+## Architecture
 
 ![System Architecture](./docs/arch.png)
 
@@ -44,16 +44,16 @@ Each service runs in a Docker container and is deployed in a **Kubernetes cluste
 
 ---
 
-## ⚡ Deployment / How to Run
+## Deployment / How to Run
 
-### 🧩 Prerequisites
+### Prerequisites
 Make sure you have the following installed:
 - [Docker](https://docs.docker.com/get-docker/)
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Helm](https://helm.sh/docs/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-### 🚀 Quick Start
+### Quick Start
 
 Clone the repository and launch the full stack locally with:
 ```bash
@@ -69,7 +69,7 @@ This script:
 
 ---
 
-### 🔗 Once deployed, open:
+### Once deployed, open:
 
 | Service | URL |
 |----------|-----|
@@ -79,7 +79,7 @@ This script:
 
 ---
 
-### 🧪 Optional Manual Deployment
+### Optional Manual Deployment
 
 If you prefer to deploy manually, follow these steps:
 
@@ -96,6 +96,6 @@ If you prefer to deploy manually, follow these steps:
 7. **Port-forward** the Market Data Publisher on `localhost:3003`.  
 8. **Deploy the Client Gateway** service and deployment last.  
 
-> 💡 You can reference or reuse commands from the `deploy-all.sh` script to simplify these steps.  
+> You can reference or reuse commands from the `deploy-all.sh` script to simplify these steps.  
 >  
-> ⚙️ If deploying manually, updating the `RABBITMQ_URL` environment variable in each service configuration to match your cluster’s RabbitMQ endpoint might be needed so that message queues function correctly.
+> If deploying manually, updating the `RABBITMQ_URL` environment variable in each service configuration to match your cluster’s RabbitMQ endpoint might be needed so that message queues function correctly.
